@@ -1,0 +1,41 @@
+/* Custom page CSS
+-------------------------------------------------- */
+
+main > .container {
+    padding: 60px 15px 0;
+  }
+  
+  .footer {
+    background-color: #5B8ECD;
+  }
+  
+  .footer > .container {
+    margin-left: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    color: #ffffff;
+    font-family: 'Roboto Mono', monospace;
+
+  }
+
+  .btn-outline{
+    color: #FFB200;
+    border-color: #FFB200;
+  }
+
+  .btn-outline:hover {
+    color: #fff;
+    background-color: #FFB200;
+    border-color: #FFB200;
+}
+
+  .navbar{
+    background-color: #3B457A;
+    font-family: 'Roboto Mono', monospace;
+
+  }
+
+  
+  code {
+    font-size: 80%;
+  }
