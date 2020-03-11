@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+    <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.js"></script>
+</head>
+
+<body>
+    <script>
+        FHIR.oauth2.authorize({
+            name: 'CHBase Demo App',
+            uniqueName: 'DigitalHealthToolKit',
+            clientId: '45dda6f3-e8f7-466a-9e98-d8b9f30aabd9',
+            redirectUri: 'https://ppayne12.github.io/digitalhealth/redirect/',
+            launchUrl: 'https://ppayne12.github.io/digitalhealth/launch/',
+            fhirServiceUrl: 'https://platform.ppe.chbase.com/api/fhir',
+            scope: [
+                "launch",           // Get the launch context in EHR launch mode
+                "launch/patient",   // Get the current patient in standalone launch mode
+                "launch/encounter", // Get the current encounter in standalone launch mode
+                "openid fhirUser",  // Get the current user
+                "patient/*.read"    // Read patient data
+            ].join(" "),
+            standalonePatient: true,
+            ehrLaunch: true,
+            server: 'chbaseppe',
+        });
+    </script>
+</body>
+
+</html>
