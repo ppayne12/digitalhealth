@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <script>
+        <script>
         FHIR.oauth2.authorize({
             name: 'CHBase Demo App',
             uniqueName: 'DigitalHealthToolKit',
@@ -18,7 +18,6 @@
             redirectUri: 'https://ppayne12.github.io/digitalhealth/redirect/',
             launchUrl: 'https://ppayne12.github.io/digitalhealth/launch/',
             fhirServiceUrl: 'https://platform.ppe.chbase.com/api/fhir',
-            iss: 'https://shell.ppe.chbase.com/oauth/authorize',
             scope: [
                 "launch",           // Get the launch context in EHR launch mode
                 "launch/patient",   // Get the current patient in standalone launch mode
@@ -28,6 +27,7 @@
             ].join(" "),
             standalonePatient: true,
             ehrLaunch: true,
+            server: 'chbaseppe',
         });
     </script>
 </body>
