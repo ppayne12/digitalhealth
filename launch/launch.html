@@ -19,15 +19,14 @@
             launchUrl: 'https://ppayne12.github.io/digitalhealth/launch/',
             fhirServiceUrl: 'https://platform.ppe.chbase.com/api/fhir',
             iss: 'https://shell.ppe.chbase.com/oauth/authorize',
-            scope: [
+            scope: "launch/patient"/*[
                 "launch",           // Get the launch context in EHR launch mode
                 "launch/patient",   // Get the current patient in standalone launch mode
                 //"launch/encounter", // Get the current encounter in standalone launch mode
                 //"openid fhirUser",  // Get the current user
                 "patient/*.read"    // Read patient data
-            ].join(" "),
-            standalonePatient: true,
-            ehrLaunch: true,
+            ].join(" ")*/,
+            standalonePatient: true
         });
     </script>
 </body>
