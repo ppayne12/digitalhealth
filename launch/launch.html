@@ -20,7 +20,9 @@
             fhirServiceUrl: 'https://platform.ppe.chbase.com/api/fhir',
             scope: [
                // "launch",           // Get the launch context in EHR launch mode
-                "launch/patient"//,   // Get the current patient in standalone launch mode
+                "launch/patient",
+                "openid",
+                "profile"//,   // Get the current patient in standalone launch mode
                // "launch/encounter", // Get the current encounter in standalone launch mode
                 //"openid fhirUser",  // Get the current user
               //  "patient/*.read"    // Read patient data
