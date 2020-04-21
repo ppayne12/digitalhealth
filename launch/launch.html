@@ -7,7 +7,16 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel='stylesheet' type='text/css' href='../style/result-style.css'>
   <title>Launch</title>
-  <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.js"></script>
+  <!--
+    Update back to latest version when fhir.js dependencies resolved
+    <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.js"></script>-->
+  <!-- old FHIR Client JS Library -->
+  <script src='../lib/js/fhir-client-v0.1.12.js'></script>
+
+  <!-- Prevent session bleed caused by single threaded embedded browser and sessionStorage API -->
+  <!-- https://github.com/cerner/fhir-client-cerner-additions -->
+  <script src='../lib/js/fhir-client-cerner-additions-1.0.0.js'></script>
+
 </head>
 
 <body>
