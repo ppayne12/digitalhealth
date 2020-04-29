@@ -69,13 +69,14 @@
             <a href="launch.html?iss=https://platform.ppe.chbase.com/api/fhir" class="btn btn-outline">Sign in
                 to CHBase</a>
         </div>
-    </main>
 
-    <h4>Current Patient</h4>
-    <div id="patient">Loading...</div>
-    <br />
-    <h4>Medications</h4>
-    <div id="meds">Loading...</div>
+
+
+        <div id="patient">Loading...</div>
+        <br />
+        <h4>Medications</h4>
+        <div id="meds">Loading...</div>
+    </main>
     <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.js"></script>
     <script type="text/javascript">
         FHIR.oauth2.ready().then(function (client) {
