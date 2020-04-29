@@ -70,7 +70,18 @@
 
     <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        FHIR.oauth2.ready().then(function (client) {
+            let app = new App(client);
+            app.renderContext();
+            app.request("metadata");
+        }).catch(createRenderer("output"));
+    </script>
+
     <script>
+
+
         extractData().then(
             //Display Patient Demographics and Observations if extractData was success
             function (p) {

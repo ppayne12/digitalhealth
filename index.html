@@ -66,10 +66,58 @@
             <h1 class="mt-5">Digital Health Test Toolkit</h1>
             <p class="lead">This site provides a set of test functionality for digital health capabilities. All data is
                 fictitious using the CHBase FHIR API.</p>
-            <a href="./launch/launch.html?iss=https://platform.ppe.chbase.com/api/fhir" class="btn btn-outline">Sign in
+            <a href="launch.html?iss=https://platform.ppe.chbase.com/api/fhir" class="btn btn-outline">Sign in
                 to CHBase</a>
         </div>
     </main>
+
+    <h4>Current Patient</h4>
+    <div id="patient">Loading...</div>
+    <br />
+    <h4>Medications</h4>
+    <div id="meds">Loading...</div>
+    <script type="text/javascript">
+        FHIR.oauth2.ready().then(function (client) {
+
+            // Render the current patient (or any error)
+            client.patient.read().then(
+                function (pt) {
+                    document.getElementById("patient").innerText = JSON.stringify(pt, null, 4);
+                },
+                function (error) {
+                    document.getElementById("patient").innerText = error.stack;
+                }
+            );
+
+            // Get MedicationRequests for the selected patient
+            client.request("/MedicationRequest?patient=" + client.patient.id, {
+                resolveReferences: ["medicationReference"],
+                graph: true
+            })
+
+                // Reject if no MedicationRequests are found
+                .then(function (data) {
+                    if (!data.entry || !data.entry.length) {
+                        throw new Error("No medications found for the selected patient");
+                    }
+                    return data.entry;
+                })
+
+
+                // Render the current patient's medications (or any error)
+                .then(
+                    function (meds) {
+                        document.getElementById("meds").innerText = JSON.stringify(meds, null, 4);
+                    },
+                    function (error) {
+                        document.getElementById("meds").innerText = error.stack;
+                    }
+                );
+
+        }).catch(console.error);
+    </script>
+
+    <!--End Page Content-->
 
     <footer class="footer mt-auto py-3">
         <div class="container">
@@ -86,13 +134,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
-    <script>
-        FHIR.oauth2.ready()
-            .then(client => client.request("Patient"))
-            .then(console.log)
-            .catch(console.error);
-    </script>
+    <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.js"></script>
+
+
 </body>
 
 </html>
