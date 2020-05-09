@@ -19,25 +19,26 @@ App.prototype.fetchCurrentPatient = () => {
     return this.client.patient.read().then(render, render);
 };
 
-App.prototype.fetchCurrentEncounter = function () {
+App.prototype.fetchCurrentEncounter = () => {
     let render = createRenderer("encounter");
     render("Loading...");
     return this.client.encounter.read().then(render, render);
 };
 
-App.prototype.fetchCurrentUser = function () {
+App.prototype.fetchCurrentUser = () => {
     let render = createRenderer("user");
     render("Loading...");
     return this.client.user.read().then(render, render);
 };
 
-App.prototype.fetchCurrentObservation() = function () {
+
+App.prototype.fetchCurrentObservation = () => {
     let render = createRenderer("observation");
     render("Loading...");
     return this.client.observation.read().then(render, render);
 }
 
-App.prototype.request = function (requestOptions, fhirOptions) {
+App.prototype.request = (requestOptions, fhirOptions) => {
     let render = createRenderer("output");
     render("Loading...");
     return this.client.request(requestOptions, fhirOptions).then(render, render);
