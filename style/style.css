@@ -39,15 +39,19 @@ main > .container {
     font-size: 80%;
   }
 
+  .summary{
+    display: none;
+  }
+
   .spinner {
-    margin: 100px auto 0;
+    margin: 30px auto 0;
     width: 70px;
     text-align: center;
   }
   
   .spinner > div {
-    width: 18px;
-    height: 18px;
+    width: 10px;
+    height: 10px;
     background-color: #000;
   
     border-radius: 100%;

@@ -60,64 +60,37 @@
         </nav>
     </header>
 
+
+
     <!-- Begin page content -->
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <h1 class="mt-5">Digital Health Test Toolkit</h1>
-            <p class="lead">This site provides a set of test functionality for digital health capabilities. All data is
-                fictitious using the CHBase FHIR API.</p>
-            <a href="launch.html?iss=https://platform.ppe.chbase.com/api/fhir" class="btn btn-outline">Sign in
+            <p class="lead">This site provides a set of test functionality for digital health capabilities. Site is
+                connected to the CHBase sandbox - do not use real information.</p>
+            <a href="launch.html?iss=https://platform.ppe.chbase.com/api/fhir" class="btn btn-outline ">Sign in
                 to CHBase</a>
+            <div class="summary">
+                <h2 class="mt-3">Health Summary</h2>
+
+                <div class="spinner loading">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+
+                <div class="results">
+                    Patient:
+                    <pre id="patient"></pre>
+
+                    Observation:
+                    <pre id="observation"></pre>
+                </div>
+            </div>
+            <div class="errors"></div>
         </div>
 
-
-
-        <div id="patient">Loading...</div>
-        <br />
-        <h4>Medications</h4>
-        <div id="meds">Loading...</div>
     </main>
-    <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.js"></script>
-    <script type="text/javascript">
-        FHIR.oauth2.ready().then(function (client) {
-
-            // Render the current patient (or any error)
-            client.patient.read().then(
-                function (pt) {
-                    document.getElementById("patient").innerText = JSON.stringify(pt, null, 4);
-                },
-                function (error) {
-                    document.getElementById("patient").innerText = error.stack;
-                }
-            );
-
-            // Get MedicationRequests for the selected patient
-            client.request("/MedicationRequest?patient=" + client.patient.id, {
-                resolveReferences: ["medicationReference"],
-                graph: true
-            })
-
-                // Reject if no MedicationRequests are found
-                .then(function (data) {
-                    if (!data.entry || !data.entry.length) {
-                        throw new Error("No medications found for the selected patient");
-                    }
-                    return data.entry;
-                })
-
-
-                // Render the current patient's medications (or any error)
-                .then(
-                    function (meds) {
-                        document.getElementById("meds").innerText = JSON.stringify(meds, null, 4);
-                    },
-                    function (error) {
-                        document.getElementById("meds").innerText = error.stack;
-                    }
-                );
-
-        }).catch(console.error);
-    </script>
 
     <!--End Page Content-->
 
@@ -136,6 +109,17 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.js"></script>
+    <script src="src/app.js"></script>
+    <script>
+        FHIR.oauth2.ready().then((client) => {
+            let app = new App(client);
+            app.renderContext();
+            app.request("metadata");
+        })
+            .then(console.log)
+            .catch(console.error);
+    </script>
 
 
 
