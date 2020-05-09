@@ -13,38 +13,38 @@ function App(client) {
     this.client = client;
 }
 
-App.prototype.fetchCurrentPatient = () => {
+App.prototype.fetchCurrentPatient = function () {
     let render = createRenderer("patient");
     render("Loading...");
     return this.client.patient.read().then(render, render);
 };
 
-App.prototype.fetchCurrentEncounter = () => {
+App.prototype.fetchCurrentEncounter = function () {
     let render = createRenderer("encounter");
     render("Loading...");
     return this.client.encounter.read().then(render, render);
 };
 
-App.prototype.fetchCurrentUser = () => {
+App.prototype.fetchCurrentUser = function () {
     let render = createRenderer("user");
     render("Loading...");
     return this.client.user.read().then(render, render);
 };
 
 
-App.prototype.fetchCurrentObservation = () => {
+App.prototype.fetchCurrentObservation = function () {
     let render = createRenderer("observation");
     render("Loading...");
     return this.client.observation.read().then(render, render);
 }
 
-App.prototype.request = (requestOptions, fhirOptions) => {
+App.prototype.request = function (requestOptions, fhirOptions) {
     let render = createRenderer("output");
     render("Loading...");
     return this.client.request(requestOptions, fhirOptions).then(render, render);
 };
 
-App.prototype.renderContext = () => {
+App.prototype.renderContext = function () {
     return Promise.all([
         this.fetchCurrentPatient(),
         //this.fetchCurrentUser(),
