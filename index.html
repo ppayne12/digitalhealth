@@ -121,7 +121,7 @@
 
 
         FHIR.oauth2.ready().then(function (client) {
-            if (client.id) {
+            if (client.patient.id) {
                 let app = new App(client);
                 app.renderContext();
                 app.request("metadata");
