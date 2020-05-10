@@ -118,13 +118,18 @@
     <script src="src/app.js"></script>
 
     <script>
-        FHIR.oauth2.ready().then((client) => {
-            let app = new App(client);
-            app.renderContext();
-            app.request("metadata");
+
+
+        FHIR.oauth2.ready().then(function (client) {
+            if (client.id) {
+                let app = new App(client);
+                app.renderContext();
+                app.request("metadata");
+            }
         })
-            .then(console.log)
-            .catch(console.error);
+            .catch(console.error("error"));
+
+
     </script>
 
 
