@@ -122,9 +122,13 @@
 
         FHIR.oauth2.ready().then(function (client) {
             if (client.patient.id) {
+                $('.summary').show();
                 let app = new App(client);
                 app.renderContext();
                 app.request("metadata");
+                $('.loading').hide();
+                $('.results').show();
+                $('.btn').hide();
             }
         });
 
