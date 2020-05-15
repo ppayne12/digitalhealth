@@ -1,11 +1,22 @@
 'use strict';
 
+
+
 function createRenderer(id) {
     const output = id ? document.getElementById(id) : document.body;
     return (data) => {
-        output.innerText = data && typeof data === "object"
-            ? JSON.stringify(data, null, 4)
-            : String(data);
+        if (data) {
+            if (id === "patient" && data !== "Loading...") {
+                let patient = JSON.parse(data);
+                output.innText = patient.name.given;
+            } else if (id === "encounter") {
+
+            } else {
+                output.innerText = data && typeof data === "object"
+                    ? JSON.stringify(data, null, 4)
+                    : String(data);
+            }
+        }
     };
 }
 
@@ -25,12 +36,6 @@ App.prototype.fetchCurrentEncounter = function () {
     return this.client.encounter.read().then(render, render);
 };
 
-App.prototype.fetchCurrentUser = function () {
-    let render = createRenderer("user");
-    render("Loading...");
-    return this.client.user.read().then(render, render);
-};
-
 
 App.prototype.fetchCurrentObservation = function () {
     let render = createRenderer("observation");
@@ -47,7 +52,6 @@ App.prototype.request = function (requestOptions, fhirOptions) {
 App.prototype.renderContext = function () {
     return Promise.all([
         this.fetchCurrentPatient(),
-        //this.fetchCurrentUser(),
         //this.fetchCurrentEncounter()
     ]);
 };
