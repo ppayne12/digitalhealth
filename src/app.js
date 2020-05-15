@@ -7,8 +7,7 @@ function createRenderer(id) {
     return (data) => {
         if (data) {
             if (id === "patient" && data !== "Loading...") {
-                let patient = JSON.parse(data);
-                output.innText = patient.name.given;
+                output.innText = data.name[0].given[0];
             } else if (id === "encounter") {
 
             } else {
