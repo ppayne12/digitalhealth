@@ -6,7 +6,7 @@ function createRenderer(id) {
     const output = id ? document.getElementById(id) : document.body;
     return (data) => {
         if (data) {
-            if (id === "patient" && data !== "Loading...") {
+            if (id === "patient" && data !== LOAD) {
                 output.innerHTML = data.name[0].given[0];
             } else if (id === "encounter") {
 
