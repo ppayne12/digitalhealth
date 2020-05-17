@@ -1,5 +1,5 @@
 'use strict';
-
+const LOAD = '<div class="spinner"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>';
 
 
 function createRenderer(id) {
@@ -7,11 +7,11 @@ function createRenderer(id) {
     return (data) => {
         if (data) {
             if (id === "patient" && data !== "Loading...") {
-                output.innerText = data.name[0].given[0];
+                output.innerHTML = data.name[0].given[0];
             } else if (id === "encounter") {
 
             } else {
-                output.innerText = data && typeof data === "object"
+                output.innerHTML = data && typeof data === "object"
                     ? JSON.stringify(data, null, 4)
                     : String(data);
             }
@@ -25,7 +25,7 @@ function App(client) {
 
 App.prototype.fetchCurrentPatient = function () {
     let render = createRenderer("patient");
-    render("Loading...");
+    render(LOAD);
     return this.client.patient.read().then(render, render);
 };
 
