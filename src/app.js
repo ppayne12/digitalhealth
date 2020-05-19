@@ -2,34 +2,7 @@
 const LOAD = '<div class="spinner"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>';
 
 
-function createRenderer(id) {
-    const output = id ? document.getElementById(id) : document.body;
-    return (data) => {
-        if (data) {
-            if (data === LOAD) {
-                output.innerHTML = data;
-            }
-            else if (id === "patient") {
-                output.innerText = data.name[0].given[0];
-            } else if (id === "encounter") {
-                output.innerText = data && typeof data === "object"
-                    ? JSON.stringify(data, null, 4)
-                    : String(data);
-            } else if (id === "observation") {
-                let map = client.byCodes(data, "code");
 
-                output.innerText = data && typeof data === "object"
-                    ? JSON.stringify(data, null, 4)
-                    : String(data);
-            }
-            else {
-                output.innerHTML = data && typeof data === "object"
-                    ? JSON.stringify(data, null, 4)
-                    : String(data);
-            }
-        }
-    };
-}
 
 function renderEncounter(data) {
     let a = data;
@@ -76,4 +49,33 @@ App.prototype.renderContext = function () {
 App.prototype.setLabel = function (containerId, label) {
     document.getElementById(containerId).previousElementSibling.innerText = label;
 };
+
+App.prototype.createRenderer = function (id) {
+    const output = id ? document.getElementById(id) : document.body;
+    return (data) => {
+        if (data) {
+            if (data === LOAD) {
+                output.innerHTML = data;
+            }
+            else if (id === "patient") {
+                output.innerText = data.name[0].given[0];
+            } else if (id === "encounter") {
+                output.innerText = data && typeof data === "object"
+                    ? JSON.stringify(data, null, 4)
+                    : String(data);
+            } else if (id === "observation") {
+                let map = client.byCodes(data, "code");
+
+                output.innerText = data && typeof data === "object"
+                    ? JSON.stringify(data, null, 4)
+                    : String(data);
+            }
+            else {
+                output.innerHTML = data && typeof data === "object"
+                    ? JSON.stringify(data, null, 4)
+                    : String(data);
+            }
+        }
+    };
+}
 
