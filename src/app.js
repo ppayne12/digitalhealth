@@ -15,26 +15,26 @@ function App(client) {
 }
 
 App.prototype.fetchCurrentPatient = function () {
-    let render = createRenderer("patient");
+    let render = this.createRenderer("patient");
     render(LOAD);
     return this.client.patient.read().then(render, render);
 };
 
 App.prototype.fetchCurrentEncounter = function () {
-    let render = createRenderer("encounter");
+    let render = this.createRenderer("encounter");
     render(LOAD);
     return this.client.encounter.read().then(render, render);
 };
 
 
 App.prototype.fetchCurrentObservation = function () {
-    let render = createRenderer("observation");
+    let render = this.createRenderer("observation");
     render(LOAD);
     return this.client.request("Observation").then(render, render);
 }
 
 App.prototype.request = function (requestOptions, fhirOptions) {
-    let render = createRenderer("output");
+    let render = this.createRenderer("output");
     render("Loading...");
     return this.client.request(requestOptions, fhirOptions).then(render, render);
 };
