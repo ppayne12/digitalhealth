@@ -16,6 +16,8 @@ function createRenderer(id) {
                     ? JSON.stringify(data, null, 4)
                     : String(data);
             } else if (id === "observation") {
+                let map = App.client.byCodes(data, "code");
+
                 output.innerText = data && typeof data === "object"
                     ? JSON.stringify(data, null, 4)
                     : String(data);
@@ -55,7 +57,6 @@ App.prototype.fetchCurrentEncounter = function () {
 App.prototype.fetchCurrentObservation = function () {
     let render = createRenderer("observation");
     render(LOAD);
-    let map = this.client.byCodes(observations, "code");
     return this.client.request("Observation").then(render, render);
 }
 
