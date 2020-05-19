@@ -55,7 +55,8 @@ App.prototype.fetchCurrentEncounter = function () {
 App.prototype.fetchCurrentObservation = function () {
     let render = createRenderer("observation");
     render(LOAD);
-    return this.client.byCodes(observations, "code").then(render, render);
+    let map = this.client.byCodes(observations, "code");
+    return this.client.request("Observation").then(render, render);
 }
 
 App.prototype.request = function (requestOptions, fhirOptions) {
