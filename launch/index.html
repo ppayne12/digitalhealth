@@ -76,7 +76,7 @@
             let app = new App(client);
             app.renderContext();
             app.request("metadata");
-        }).catch(createRenderer("output"));
+        }).catch(console.error("Error loading"));
     </script>
 
     <script>

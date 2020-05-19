@@ -7,9 +7,9 @@ function createRenderer(id) {
     return (data) => {
         if (data) {
             if (id === "patient" && data !== LOAD) {
-                output.innerHTML = data.name[0].given[0];
-            } else if (id === "encounter") {
-
+                output.innerText = data.name[0].given[0];
+            } else if (id === "encounter" && data !== LOAD) {
+                output.innerHTML = renderEncounter(data);
             } else {
                 output.innerHTML = data && typeof data === "object"
                     ? JSON.stringify(data, null, 4)
@@ -18,6 +18,12 @@ function createRenderer(id) {
         }
     };
 }
+
+function renderEncounter(data) {
+    let a = data;
+
+}
+
 
 function App(client) {
     this.client = client;
@@ -31,15 +37,15 @@ App.prototype.fetchCurrentPatient = function () {
 
 App.prototype.fetchCurrentEncounter = function () {
     let render = createRenderer("encounter");
-    render("Loading...");
+    render(LOAD);
     return this.client.encounter.read().then(render, render);
 };
 
 
 App.prototype.fetchCurrentObservation = function () {
     let render = createRenderer("observation");
-    render("Loading...");
-    return this.client.observation.read().then(render, render);
+    render(LOAD);
+    return this.client.request('Observation').then(render, render);
 }
 
 App.prototype.request = function (requestOptions, fhirOptions) {
@@ -51,7 +57,7 @@ App.prototype.request = function (requestOptions, fhirOptions) {
 App.prototype.renderContext = function () {
     return Promise.all([
         this.fetchCurrentPatient(),
-        //this.fetchCurrentEncounter()
+        this.fetchCurrentObservation()
     ]);
 };
 
