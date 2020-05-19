@@ -6,11 +6,21 @@ function createRenderer(id) {
     const output = id ? document.getElementById(id) : document.body;
     return (data) => {
         if (data) {
-            if (id === "patient" && data !== LOAD) {
+            if (data === LOAD) {
+                output.innerHTML = data;
+            }
+            else if (id === "patient") {
                 output.innerText = data.name[0].given[0];
-            } else if (id === "encounter" && data !== LOAD) {
-                output.innerHTML = renderEncounter(data);
-            } else {
+            } else if (id === "encounter") {
+                output.innerText = data && typeof data === "object"
+                    ? JSON.stringify(data, null, 4)
+                    : String(data);
+            } else if (id === "observation") {
+                output.innerText = data && typeof data === "object"
+                    ? JSON.stringify(data, null, 4)
+                    : String(data);
+            }
+            else {
                 output.innerHTML = data && typeof data === "object"
                     ? JSON.stringify(data, null, 4)
                     : String(data);
@@ -45,7 +55,7 @@ App.prototype.fetchCurrentEncounter = function () {
 App.prototype.fetchCurrentObservation = function () {
     let render = createRenderer("observation");
     render(LOAD);
-    return this.client.request('Observation').then(render, render);
+    return this.client.byCodes(observations, "code").then(render, render);
 }
 
 App.prototype.request = function (requestOptions, fhirOptions) {
