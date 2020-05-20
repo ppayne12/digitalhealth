@@ -64,8 +64,10 @@ App.prototype.createRenderer = function (id) {
                     ? JSON.stringify(data, null, 4)
                     : String(data);
             } else if (id === "observation") {
-                let map = this.client.byCodes(data, "code");
-
+                let map = this.client.byCodes(data, "code"); //do something with this map
+                for (let [key, value] of map) {
+                    console.log(key + ' = ' + value)
+                }
                 output.innerText = data && typeof data === "object"
                     ? JSON.stringify(data, null, 4)
                     : String(data);
