@@ -8,14 +8,14 @@ function renderObservation(data) {
     let observations = "";
     data.entry.filter((observation) => {
         observations += ("<b>" + observation.resource.code.coding[0].display + "</b>");
-        observations += " - ";
 
         if (observation.resource.hasOwnProperty("valueQuantity")) {
             observations += " - ";
             observations += observation.resource.valueQuantity.value;
             observations += observation.resource.valueQuantity.unit;
-            observations += "<br/>";
         }
+
+        observations += "<br/>";
 
         console.log(observations)
     });
