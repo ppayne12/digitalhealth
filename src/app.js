@@ -7,7 +7,6 @@ const LOAD = '<div class="spinner"><div class="bounce1"></div><div class="bounce
 function renderObservation(data) {
     let observations = "";
     data.entry.filter((observation) => {
-        let observations = "";
         observations += ("<b>" + observation.resource.category[0].text + "</b>");
         observations += " - ";
         observations += observation.resource.code.coding[0].display;
