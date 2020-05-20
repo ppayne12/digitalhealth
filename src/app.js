@@ -4,9 +4,20 @@ const LOAD = '<div class="spinner"><div class="bounce1"></div><div class="bounce
 
 
 
-function renderEncounter(data) {
-    let a = data;
+function renderObservation(data) {
+    let observations = " ";
+    data.entry.filter((observation) => {
+        observations += ("<b>" + observation.resource.category[0].text + "</b>");
+        observations += " - ";
+        observations += observation.resource.code.coding[0].display;
+        observations += " - ";
+        observations += observation.resource.valueQuantity.value;
+        observations += observation.resource.valueQuantity.unit;
+        observations += "<br/>";
 
+        console.log(observations)
+    });
+    return observations;
 }
 
 
@@ -64,13 +75,7 @@ App.prototype.createRenderer = function (id) {
                     ? JSON.stringify(data, null, 4)
                     : String(data);
             } else if (id === "observation") {
-                let map = this.client.byCode(data, "code"); //do something with this map
-                for (let [key, value] of map) {
-                    console.log(key + ' = ' + value)
-                }
-                output.innerText = data && typeof data === "object"
-                    ? JSON.stringify(data, null, 4)
-                    : String(data);
+                output.innerHTML = renderObservation(data);
             }
             else {
                 output.innerHTML = data && typeof data === "object"
