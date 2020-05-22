@@ -45,7 +45,13 @@ main > .container {
 
   .results{
     display: none;
+    }
+
+  .card-deck{
+    display: flex;
+    flex-wrap: wrap;
   }
+  
 
   .spinner {
     margin: 30px auto 0;
