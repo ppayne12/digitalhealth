@@ -47,7 +47,7 @@ main > .container {
     display: none;
     }
 
-  .card-deck{
+  .cards{
     display: flex;
     flex-wrap: wrap;
   }
