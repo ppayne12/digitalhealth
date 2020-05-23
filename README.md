@@ -1,6 +1,6 @@
 # Digital Health
 
-Demo application to test various digital health capabilties. Technologies:
+Demo application to test SMART on FHIR capabilties for citizen access. Technologies:
 * Javascript
 * CSS
 * HTML
