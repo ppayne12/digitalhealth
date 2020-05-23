@@ -25,6 +25,7 @@ function renderObservation(data) {
 
 function App(client) {
     this.client = client;
+    sessionStorage.setItem('tokenResponse', JSON.stringify(this.client.getIdToken()));
 }
 
 App.prototype.fetchCurrentPatient = function () {
