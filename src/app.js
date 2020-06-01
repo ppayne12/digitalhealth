@@ -2,7 +2,20 @@
 const LOAD = '<div class="spinner"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>';
 
 
+function tokenCountDown(time) {
+    if (time < 1) {
+        return;
+    }
 
+    let interval = setInterval(function () {
+        document.getElementById("count-down").innerHTML = `Token Expires in ${time}s`;
+        time--;
+        if (time === 0) {
+            clearInterval(interval);
+            document.getElementById("count-down").innerHTML = "Token Expired";
+        }
+    }, 1000);
+}
 
 function renderObservation(data) {
     let observations = "";
@@ -25,7 +38,8 @@ function renderObservation(data) {
 
 function App(client) {
     this.client = client;
-    sessionStorage.setItem('tokenResponse', this.client.getIdToken());
+    sessionStorage.setItem('tokenExpiry', (client.getIdToken().exp - Math.floor(Date.now() / 1000)));
+    //client.getIdToken().exp - Math.floor(Date.now() / 1000);
 }
 
 App.prototype.fetchCurrentPatient = function () {

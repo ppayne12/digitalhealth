@@ -15,7 +15,11 @@ main > .container {
     padding-left: 15px;
     color: #ffffff;
     font-family: 'Roboto Mono', monospace;
+  }
 
+  .count-down{
+    color: red;
+    font-weight: bold;
   }
 
   .btn-outline{

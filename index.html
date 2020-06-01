@@ -118,6 +118,7 @@
                     </div>
                 </div>
                 <div class="errors"></div>
+                <div class="count-down mt-5"></div>
             </div>
 
 
@@ -158,6 +159,7 @@
                 $('.loading').hide();
                 $('.results').show();
                 $('.btn').hide();
+                tokenCountDown(sessionStorage.getItem('tokenExpiry'));
             }
         }).catch(console.error("Error"));
 
