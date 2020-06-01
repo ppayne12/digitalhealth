@@ -8,11 +8,11 @@ function tokenCountDown(time) {
     }
 
     let interval = setInterval(function () {
-        document.getElementById("count-down").innerHTML = `Token Expires in ${time}s`;
+        document.querySelector(".count-down").innerHTML = `Token Expires in ${time}s`;
         time--;
         if (time === 0) {
             clearInterval(interval);
-            document.getElementById("count-down").innerHTML = "Token Expired";
+            document.querySelector(".count-down").innerHTML = "Token Expired";
         }
     }, 1000);
 }
