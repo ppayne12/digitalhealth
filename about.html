@@ -44,10 +44,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="index.html">Home </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="about.html">About</a>
                     </li>
 
@@ -65,64 +65,11 @@
     <!-- Begin page content -->
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <h1 class="mt-5">Digital Health Test Toolkit</h1>
-            <p class="lead">This site provides a set of test functionality for digital health capabilities. Site is
-                connected to non-production sites - <b>do not use real information.</b></p>
-            <a href="launch.html?iss=https://platform.ppe.chbase.com/api/fhir" class="btn btn-outline">Sign in
-                to CHBase</a>
-            &nbsp;&nbsp;
-            <a class="btn btn-outline"
-                href="launch-smart.html?iss=https://launch.smarthealthit.org/v/r3/sim/eyJrIjoiMSIsImIiOiJzbWFydC03Nzc3NzAxIn0/fhir">Sign
-                in to SmartHealthIT</a>
+            <h1 class="mt-5">About</h1>
+            <p class="lead">This site was created as a demo to test test out the client-js library, connecting to a
+                SMARTonFHIR backend. Site is created in javascript using bootstrap. Created by <a
+                    href="https://github.com/ppayne12/" alt="github">Paul Payne</a>
 
-            <div class="summary">
-                <h2 class="mt-3">Health Summary</h2>
-
-                <div class="spinner loading">
-                    <div class="bounce1"></div>
-                    <div class="bounce2"></div>
-                    <div class="bounce3"></div>
-                </div>
-
-                <div class="results">
-
-                    <div class="row">
-                        <div class="col-sm">
-                            <div class="card">
-                                <div class="card-header">Patient</div>
-                                <div class="card-body">
-                                    <p class="card-text" id="patient">Paul Payne</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm">
-                            <div class="card">
-                                <div class="card-header">Observation(s)</div>
-                                <div class="card-body">
-                                    <p class="card-text" id="observation"></p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm">
-                            <div class="card">
-                                <div class="card-header">Encounter(s)</div>
-                                <div class="card-body">
-                                    <p class="card-text" id="encounter"></p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-                <div class="errors"></div>
-                <div class="count-down mt-5"></div>
-            </div>
-
-
-        </div>
 
 
     </main>
